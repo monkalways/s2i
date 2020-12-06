@@ -30,8 +30,8 @@ COPY ./s2i/bin/ /usr/libexec/s2i
 
 # rh-nodejs14-npm rh-nodejs14-nodejs-nodemon not available
 RUN yum install -y centos-release-dotnet centos-release-scl-rh
-RUN yum install -y --setopt=tsflags=nodocs dotnet-sdk-5.0 rsync
-RUN rpm -V dotnet-sdk-5.0 rsync
+RUN yum install -y --setopt=tsflags=nodocs rh-nodejs10-npm rh-nodejs10-nodejs-nodemon dotnet-sdk-5.0 rsync
+RUN rpm -V rh-nodejs10-npm rh-nodejs10-nodejs-nodemon dotnet-sdk-5.0 rsync
 RUN yum clean all -y && \
     # yum cache files may still exist (and quite large in size)
     rm -rf /var/cache/yum/*
