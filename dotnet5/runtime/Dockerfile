@@ -84,7 +84,7 @@ CMD "./${DOTNET_DEFAULT_CMD}"
 RUN chown -R 1001:0 /opt/app-root 
 #RUN fix-permissions /opt/app-root (permission denied)
 
-ENTRYPOINT [ "container-entrypoint" ]
+# ENTRYPOINT [ "container-entrypoint" ]
 
 # Run container by default as user with id 1001 (default)
 USER 1001
