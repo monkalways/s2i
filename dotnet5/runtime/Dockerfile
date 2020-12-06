@@ -48,6 +48,10 @@ COPY ./root/usr/bin /usr/bin
 # Make dotnet command available even when scl is not enabled.
 RUN ln -s /opt/app-root/etc/scl_enable_dotnet /usr/bin/dotnet
 
+# Add Microsoft RPM
+
+RUN rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
+
 RUN yum install -y centos-release-dotnet
 RUN yum install -y --setopt=tsflags=nodocs aspnetcore-runtime-5.0 nss_wrapper tar unzip
 RUN rpm -V aspnetcore-runtime-5.0 nss_wrapper tar unzip
