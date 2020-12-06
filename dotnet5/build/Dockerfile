@@ -28,9 +28,10 @@ COPY ./s2i/bin/ /usr/libexec/s2i
 # Add Microsoft RPM
 # RUN rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
 
+# rh-nodejs14-npm rh-nodejs14-nodejs-nodemon not available
 RUN yum install -y centos-release-dotnet centos-release-scl-rh
-RUN yum install -y --setopt=tsflags=nodocs rh-nodejs14-npm rh-nodejs14-nodejs-nodemon dotnet-sdk-5.0 rsync
-RUN rpm -V rh-nodejs14-npm rh-nodejs14-nodejs-nodemon dotnet-sdk-5.0 rsync
+RUN yum install -y --setopt=tsflags=nodocs dotnet-sdk-5.0 rsync
+RUN rpm -V dotnet-sdk-5.0 rsync
 RUN yum clean all -y && \
     # yum cache files may still exist (and quite large in size)
     rm -rf /var/cache/yum/*
