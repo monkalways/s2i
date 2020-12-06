@@ -49,7 +49,6 @@ COPY ./root/usr/bin /usr/bin
 RUN ln -s /opt/app-root/etc/scl_enable_dotnet /usr/bin/dotnet
 
 # Add Microsoft RPM
-
 RUN rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
 
 RUN yum install -y centos-release-dotnet
