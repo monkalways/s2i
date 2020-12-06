@@ -48,6 +48,7 @@ RUN dotnet help
 # cause actions that work on all of /opt/app-root to fail. So we need to fix
 # the permissions on those too.
 RUN chown -R 1001:1001 /opt/app-root
+RUN chown -R 1001:1001 /usr/libexec/s2i
 # fix-permissions /opt/app-root (permission denied)
 
 ENV ENABLED_COLLECTIONS="$ENABLED_COLLECTIONS rh-nodejs14" \
