@@ -48,10 +48,10 @@ COPY ./root/usr/bin /usr/bin
 # Make dotnet command available even when scl is not enabled.
 RUN ln -s /opt/app-root/etc/scl_enable_dotnet /usr/bin/dotnet
 
-RUN yum install -y centos-release-dotnet && \
-    yum install -y --setopt=tsflags=nodocs rh-dotnet31-aspnetcore-runtime-5.0 nss_wrapper tar unzip && \
-    rpm -V rh-dotnet31-aspnetcore-runtime-5.0 nss_wrapper tar unzip && \
-    yum clean all -y && \
+RUN yum install -y centos-release-dotnet
+RUN yum install -y --setopt=tsflags=nodocs rh-dotnet31-aspnetcore-runtime-5.0 nss_wrapper tar unzip
+RUN rpm -V rh-dotnet31-aspnetcore-runtime-5.0 nss_wrapper tar unzip
+RUN yum clean all -y && \
     # yum cache files may still exist (and quite large in size)
     rm -rf /var/cache/yum/*
 
