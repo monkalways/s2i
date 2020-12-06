@@ -47,7 +47,7 @@ RUN dotnet help
 # directories (such as ~/.pki/nssdb) there. These will be owned by root and can
 # cause actions that work on all of /opt/app-root to fail. So we need to fix
 # the permissions on those too.
-RUN chown -R 1001:0 /opt/app-root
+RUN chown -R 1001:1001 /opt/app-root
 # fix-permissions /opt/app-root (permission denied)
 
 ENV ENABLED_COLLECTIONS="$ENABLED_COLLECTIONS rh-nodejs14" \

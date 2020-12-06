@@ -81,7 +81,7 @@ CMD "./${DOTNET_DEFAULT_CMD}"
 # In order to drop the root user, we have to make some directories world
 # writable as OpenShift default security model is to run the container under
 # random UID.
-RUN chown -R 1001:0 /opt/app-root 
+RUN chown -R 1001:1001 /opt/app-root 
 #RUN fix-permissions /opt/app-root (permission denied)
 
 # ENTRYPOINT [ "container-entrypoint" ]
