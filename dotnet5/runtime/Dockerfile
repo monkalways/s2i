@@ -11,23 +11,23 @@ ENV HOME=/opt/app-root \
     DOTNET_DEFAULT_CMD=default-cmd.sh \
     DOTNET_CORE_VERSION=5.0 \
     DOTNET_FRAMEWORK=net5.0 \
-# Microsoft's images set this to enable detecting when an app is running in a container.
+    # Microsoft's images set this to enable detecting when an app is running in a container.
     DOTNET_RUNNING_IN_CONTAINER=true \
     DOTNET_SSL_CERT_DIR=/opt/app-root/ssl_dir
 
 LABEL io.k8s.description="Platform for running .NET 5 applications" \
-      io.k8s.display-name=".NET 5" \
-      io.openshift.tags="runtime,.net,dotnet,dotnetcore,rh-dotnet50-runtime" \
-      io.openshift.expose-services="8080:http" \
-      io.openshift.s2i.scripts-url=image:///usr/libexec/s2i \
-      io.s2i.scripts-url=image:///usr/libexec/s2i
+    io.k8s.display-name=".NET 5" \
+    io.openshift.tags="runtime,.net,dotnet,dotnetcore,rh-dotnet50-runtime" \
+    io.openshift.expose-services="8080:http" \
+    io.openshift.s2i.scripts-url=image:///usr/libexec/s2i \
+    io.s2i.scripts-url=image:///usr/libexec/s2i
 
 # Labels consumed by Red Hat build service
 LABEL name="dotnet/dotnet-50-runtime-centos7" \
-      com.redhat.component="rh-dotnet50-runtime-container" \
-      version="5.0" \
-      release="1" \
-      architecture="x86_64"
+    com.redhat.component="rh-dotnet50-runtime-container" \
+    version="5.0" \
+    release="1" \
+    architecture="x86_64"
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH.
 COPY ./s2i/bin/ /usr/libexec/s2i
@@ -48,12 +48,12 @@ COPY ./root/usr/bin /usr/bin
 # Make dotnet command available even when scl is not enabled.
 RUN ln -s /opt/app-root/etc/scl_enable_dotnet /usr/bin/dotnet
 
-RUN yum install -y centos-release-dotnet && \
-    INSTALL_PKGS="rh-dotnet31-aspnetcore-runtime-5.0 nss_wrapper tar unzip" && \
-    yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
-    rpm -V $INSTALL_PKGS && \
-    yum clean all -y && \
-# yum cache files may still exist (and quite large in size)
+RUN yum install -y centos-release-dotnet
+RUN INSTALL_PKGS="rh-dotnet31-aspnetcore-runtime-5.0 nss_wrapper tar unzip"
+RUN yum install -y --setopt=tsflags=nodocs $INSTALL_PKGS
+RUN rpm -V $INSTALL_PKGS
+RUN yum clean all -y && \
+    # yum cache files may still exist (and quite large in size)
     rm -rf /var/cache/yum/*
 
 # Get prefix path and path to scripts rather than hard-code them in scripts
@@ -70,7 +70,7 @@ ENV BASH_ENV=${CONTAINER_SCRIPTS_PATH}/etc/scl_enable \
 # Add default user
 RUN mkdir -p ${DOTNET_APP_PATH} ${DOTNET_DATA_PATH} && \
     useradd -u 1001 -r -g 0 -d ${HOME} -s /sbin/nologin \
-      -c "Default Application User" default
+    -c "Default Application User" default
 
 WORKDIR ${DOTNET_APP_PATH}
 COPY default-cmd.sh ${DOTNET_DEFAULT_CMD}
