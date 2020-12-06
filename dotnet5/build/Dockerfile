@@ -59,5 +59,3 @@ USER 1001
 
 # Set the default CMD to print the usage of the language image.
 CMD /usr/libexec/s2i/usage
-
-ENTRYPOINT []
