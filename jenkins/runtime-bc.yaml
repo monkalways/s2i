@@ -66,7 +66,7 @@ parameters:
     displayName: REPO_PATH
     name: REPO_PATH
     required: true
-    value: /dotnetcore5
+    value: /dotnet5/runtime
   - description: REPO_REF
     displayName: REPO_REF
     name: REPO_REF
